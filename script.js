@@ -18,6 +18,13 @@ function makeGrid() {
 makeGrid();
 
 function changeSize() {
+    if (gridSize.value == "") {
+        grid.innerHTML = "";
+        gridSize.value = 16;
+        changeSize();
+        gridSize.value = "";
+        return;
+    }
     if (gridSize.value > 100 || gridSize.value < 1) {
         alert("Type a number between 1 and 100. \n " + gridSize.value + " is not accepted.");
         return;
@@ -54,10 +61,7 @@ document.querySelector(".gridContainer").addEventListener("click", (e) =>{
 // when "clear" button is pressed, the div grid return to its original 16x16 size. resets gridSize. 
 resetButton.addEventListener("click", function() {
     grid.innerHTML = "";
-    gridSize.value = 16;
-    color = "black";
     changeSize();
-    gridSize.value = "";
 });
 
 let userColor = document.getElementById("colorPicker").value;
